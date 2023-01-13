@@ -1,3 +1,4 @@
+#!/bin/bash
 #info output
 if [ -z "$3" ]
   then
@@ -7,9 +8,8 @@ fi
 
 
 #extract audio
-ffmpeg -i $1 -q:a 0 -map a "$3".mp3
+ffmpeg -i "$1" -q:a 0 -map a "$3".mp3
 #get transcription
 whisper "$3".mp3 -o . --language  "$3" --task "$2"
 #cleanup uneeded files
-rm $3.mp3 $3.mp3.txt "$3".mp3.vtt
-
+rm "$3".mp3 "$3".mp3.txt "$3".mp3.vtt
